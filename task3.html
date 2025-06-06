@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <style>
+          .container1 {
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+               margin-top: 20px;
+          }
+          .container2 {
+               border: 1px solid black;
+               padding: 20px;
+               border-radius: 5px;
+          }
+          .row {
+               margin-bottom: 10px;
+          }
+          .row label {
+               display: inline-block;
+               width: 100px;
+          }
+          .row input {
+               width: 150px;
+               padding: 5px;
+          }
+          .convert {
+               text-align: left;
+               margin-top: 10px;
+          }
+          .convert button {
+               margin: 0 5px;
+               padding: 5px 10px;
+               cursor: pointer;
+               border: 1px solid black;
+          }
+          .convert button.active {
+               border: 1px solid aqua; 
+          }
+          .container3 {
+               margin-top: 20px;
+               font-weight: bold;
+          }
+     </style>
+</head>
+<body>
+     <div class="container1">
+          <div class="container2">
+               <div class="row">
+                    <label for="FirstNumber">1st Number:</label>
+                    <input type="text" id="FirstNumber" placeholder="Enter First Number">
+               </div>
+               <div class="row">
+                    <label for="SecondNumber">2nd Number:</label>
+                    <input type="text" id="SecondNumber" placeholder="Enter Second Number">
+               </div>
+               <div class="convert">
+                    <button id="Mbtn" onclick="calculate('multiply')">Multiply</button>
+                    <button id="Dbtn" onclick="calculate('divide')">Divide</button>
+               </div>
+          </div>
+          <div class="container3">The Result Is:</div>
+     </div>
+
+     <script>
+          function calculate(operation) {
+               const firstNumber = parseFloat(document.getElementById('FirstNumber').value);
+               const secondNumber = parseFloat(document.getElementById('SecondNumber').value);
+               const resultDiv = document.querySelector('.container3');
+
+               const multiplyBtn = document.getElementById('Mbtn');
+               const divideBtn = document.getElementById('Dbtn');
+
+               if (operation === 'multiply') {
+                    multiplyBtn.classList.add('active');
+                    divideBtn.classList.remove('active');
+               } else if (operation === 'divide') {
+                    divideBtn.classList.add('active');
+                    multiplyBtn.classList.remove('active');
+               }
+
+               if (isNaN(firstNumber) || isNaN(secondNumber)) {
+                    resultDiv.innerHTML = 'The Result Is: Please enter valid numbers';
+                    return;
+               }
+
+               let result;
+               if (operation === 'multiply') {
+                    result = firstNumber * secondNumber;
+                    resultDiv.innerHTML = `The Result Is: ${result}`;
+               } else if (operation === 'divide') {
+                    if (secondNumber === 0) {
+                         resultDiv.innerHTML = 'The Result Is: Cannot divide by zero';
+                    } else {
+                         result = firstNumber / secondNumber;
+                         resultDiv.innerHTML = `The Result Is: ${result}`;
+                    }
+               }
+          }
+     </script>
+</body>
+</html>
