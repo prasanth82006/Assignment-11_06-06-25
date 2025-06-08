@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+</head>
+<body>
+    <label for="string">Enter your string: </label>
+    <input type="text" id="string"/>
+    <button onclick="sortString()"> sortString</button>
+    <p>The Sort string is : <span id="getValue"></span></p>
+    <script>
+        function sortString(){
+            const input = document.getElementById('string')
+            const span = document.getElementById('getValue')
+            let inputValue = input.value
+            let result = inputValue.split("").sort().join("")            
+            span.innerText = result
+        }
+    </script>
+</body>
+</html>
